@@ -1,6 +1,4 @@
 # Sign Language Recognition
-
-# Face Detection Models
 ## Description
 Implemented Sign Language Recognition system by using CNN. It uses opencv libraries to manipulate images, capture images for further preprocessng.CNN model of sign language recognition system is built using tensorflow , keras libraries. You can find the dataset from the link (Sample_img) [Link to Sample Dataset](https://www.kaggle.com/datasets/datamunge/sign-language-mnist). You can find already trained model in here (Checkpoints) [Link to checkpoints](https://drive.google.com/drive/folders/1F-JtpSmGRiSG9ftcas5VjQ_GcXffaL-V?usp=sharing)
 
