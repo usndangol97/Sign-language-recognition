@@ -57,8 +57,8 @@ def launch_webcam():
         # cv2.rectangle(frame, (int(x * frame.shape[1]), 1),
         #              (frame.shape[1], int(y * frame.shape[0])), (255, 110, 180), 2) #drawing ROI
         
-        cv2.rectangle(frame, (440,2),
-                     (640, 250), (255, 110, 180), 2) 
+        cv2.rectangle(frame, (435,2),
+                     (635, 250), (255, 110, 180), 2) 
     
         # Display the resulting frame
         img = frame
@@ -69,6 +69,7 @@ def launch_webcam():
             img = img[0:int(y * frame.shape[0]),
                         int(x * frame.shape[1]):frame.shape[1]]  # clip the ROI
             
+                        
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             cv2.imwrite("images/asl.jpg",gray)
             pred=classify(model)            

@@ -69,7 +69,9 @@ def img_to_df(img_path):
     
     for img in os.listdir(IMG_DIR):
         img_array = cv2.imread(os.path.join(IMG_DIR,img), cv2.IMREAD_GRAYSCALE)
-    
+        # print(type(img_array))
+        # print(img_array)
+        
         img_pil = Image.fromarray(img_array)
         img_28x28 = np.array(img_pil.resize((28, 28), Image.ANTIALIAS))
     
@@ -77,16 +79,16 @@ def img_to_df(img_path):
     
         img_array  = img_array.reshape(-1,1).T
     
-        print(type(img_array))
+        # print(type(img_array))
         
-        print(img_array.size)
+        # print(img_array.size)
     
         with open('img_train.csv', 'ab') as f:
             np.savetxt(f, img_array, delimiter=",")
     
 def classify(model, img_path='images'):
     img_to_df(img_path)
-    test_df = pd.read_csv('img_train.csv')
+    test_df = pd.read_csv('img_train.csv', error_bad_lines=False)
     norm_test = test_df.to_numpy().reshape((test_df.shape[0], 28, 28,1)).astype('float64')/255.0
     
     pred = model.predict(norm_test)
@@ -117,13 +119,13 @@ if __name__ == '__main__':
                                                      save_weights_only=True,
                                                      verbose=1)  
         
-    # history = model.fit(
-    #     x_train, y_train,
-    #     epochs = 15,
-    #     validation_data = (x_test, y_test),
-    #     callbacks=[cp_callback])
+    history = model.fit(
+        x_train, y_train,
+        epochs = 22,
+        validation_data = (x_test, y_test),
+        callbacks=[cp_callback])
     
-    model.load_weights(checkpoint_path)
+    # model.load_weights(checkpoint_path)
     
     
     
